@@ -1,0 +1,117 @@
+Language Styles:
+- Imperative Style --> focus on loops and functions like c
+- OOP Langs --> Everything is an object ( data, methods, inheritance, ) <-- every action is result of calling a method on some object 
+
+-- Functional Languages (purest view )
+	All ops are function calls +(3,5)
+      --> no side effects in a function [ strictly passed by value ]
+      --> functions can be treated as data meaning that you can pass functions as params, functions can write/alter/run other functions
+
+------------------------------------------------------------------
+Functional Languages (Lisp)
+Every operation is a function applied to data. 
+In a purest view::
+  No variables
+  No Iteration
+eg:: Imperative style
+
+x=3+5
+y=2+7
+z=x*y
+print z
+
+Functional version:: (NOT LISP)
+print(*(+3,5),+(2,7) ) 
+------ Think about my sequence of actions differently
+
+HighlevelAction(Things it's working on ) and for each of the things acan be values.
+
+
+
+Drawbacks::
+no variables <--function composition , no sequences <-- func composition, no loops <-- recursive function
+
+Lots of function calls implies --> { each call involves pushing params on stack, pushing carious other call data on stack, setting a program counter somewhere, cleaning pu stack after call completes}
+
+^ Theoretically, 
+	- Memory intrusive for deep recursion
+	- slower for lots of recursion
+^^ We can actually eliminate a lot of this overhead if we know what we're doing [ tail recursion ] 
+
+
+-----------------------------------------------------------------
+
+LISP: OUR FUNCTIONAL LANGUAGE : look at a mix of pure functional features + hybrid imperative features
+	- How these can be offered to the programmer but built out of pure functional components
+
+----------------
+
+Functional languages: [ no vars, no seques of actions, no side effects on functions)
+  - Advantages: 
+	- Unit testing can provably test the correctness of code
+	- Concurrency/ using multiple processes greatly simplified  -- -- Lots of independant compenents we can throw at any processor as soon as their params are ready
+
+	- Some programming problems naturally amenable to recursive approach
+	- Higher order functions: functions that manipulate code very powerful.
+
+-------------------------------
+Basics: Operations are done using function calls
+	syntax:  (function data values)
+		(+ 3 5)
+		(sqrt 16)
+-------
+Handles typical numeric values, "strings", 
+chars ' '  --> #\Q
+
+List of values [ array ish] ::
+	(1 2 3 4 5 6) --- OR --- ("foo" 3.5 12) ---- OR ---- (60 (1 2 3) "blah")
+
+Every function returns a value:
+	eg: use read to read from standard input
+	(* (read) (read) )   ; this reads twice from the keyboard twice
+
+
+-----
+output
+(format t "This is my text ~%")
+(format t "3 * 7 is : ~A ~%" (* 3 7))
+
+Comments
+; blah blah....
+--------
+
+true and false
+t	nil
+
+--------------------
+Declaring vars: [ non-purest]
+(defvar x 3)
+
+Set value in a var--
+(setf x 27)
+(setq x 29)
+
+==================
+List syntax ( 1 2 3 4 )
+pass a list to a functon??
+
+(reverse '(1 2 3 4))  ; single quote says to interpreter: Don't evaluate, treat as a list not as a function 
+
+=============================
+(format t  "Enter a number")
+(defvar x (read))
+; x is whatever user typed
+(format t  "~A*~A is ~A !%" x x (*x x))
+
+Variables in lisp are dynamically typed....
+Data type can change based on what data is in it right now
+(defvar x 3)
+(sqtq x 3.5)
+(setq x "foo")
+(setq x '(1 2 3))
+
+Type checking functions:
+(integerp x) 
+(listp x)
+(characterp x)
+

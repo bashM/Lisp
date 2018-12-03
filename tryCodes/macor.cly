@@ -1,0 +1,6 @@
+#! /usr/bin/gcl -f
+
+(defmacro /\ (&rest L) `(lambda ,@L))
+
+(setf f (/\ (x) (* x x)))
+(format t "f(2) ~A~%" (funcall f 2))
